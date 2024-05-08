@@ -3,8 +3,8 @@ from pandas import pandas as pd
 
 app = FastAPI()
 
-result_df = pd.read_csv("C:/Users/Federico/Desktop/Trabajo Individual Henry/1/FastApi/CSV/UserForGenre")
-df_max_hours_year = pd.read_csv("C:/Users/Federico/Desktop/Trabajo Individual Henry/1/FastApi/CSV/PlayTimeGenre")
+result_df = pd.read_csv("C:/Users/Federico/Desktop/Trabajo Individual Henry/1/FastApi/CSV/UserForGenre.csv")
+df_max_hours_year = pd.read_csv("C:/Users/Federico/Desktop/Trabajo Individual Henry/1/FastApi/CSV/PlayTimeGenres.csv")
 
 @app.get("/user_for_genre/{genre}")
 def UserForGenre(genre: str):
