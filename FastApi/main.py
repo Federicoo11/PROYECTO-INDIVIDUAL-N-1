@@ -6,22 +6,22 @@ app = FastAPI()
 result_df = pd.read_csv("C:/Users/Federico/Desktop/Trabajo Individual Henry/1/FastApi/CSV/UserForGenre")
 df_max_hours_year = pd.read_csv("C:/Users/Federico/Desktop/Trabajo Individual Henry/1/FastApi/CSV/PlayTimeGenre")
 
-@app.get("/")
-def UserForGenre(genre):
+@app.get("/user_for_genre/{genre}")
+def UserForGenre(genre: str):
     # Suponiendo que tienes el DataFrame 'df' disponible en este contexto
-    genre_df = result_df[result_df['genres'] == genre]
+    genre_df = result_df[result_df["genres"] == genre]
     
     # Encontrar el índice del usuario que más jugó para ese género
-    max_playtime_index = genre_df['playtime_forever'].idxmax()
+    max_playtime_index = genre_df["playtime_forever"].idxmax()
     
     # Obtener el usuario y las horas correspondientes
-    max_playtime_user = genre_df.loc[max_playtime_index, 'user_id']
-    max_playtime_hours = genre_df.loc[max_playtime_index, 'playtime_forever']
+    max_playtime_user = genre_df.loc[max_playtime_index, "user_id"]
+    max_playtime_hours = genre_df.loc[max_playtime_index, "playtime_forever"]
     
     return max_playtime_user, max_playtime_hours
 
-@app.get("/")
-def PlayTimeGenre(genre):
+@app.get("/play_time_genre/{genre}")
+def PlayTimeGenre(genre: str):
     # Filtrar el DataFrame por el género especificado
     df_genre = df_max_hours_year[df_max_hours_year['genre'] == genre]
     
